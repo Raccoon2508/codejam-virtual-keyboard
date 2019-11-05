@@ -1,0 +1,143 @@
+.text-area {
+  width: 100%;
+  height: 200px;
+  border: 2px solid black;
+}
+
+.keyboard-area {
+  background-color: #757575;
+  width: 100%;
+  height: 550px;
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.wraper {
+  width: 1400px;
+  margin: 0 30%;
+}
+
+.row {
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 2px;
+}
+
+.row .key {
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: gray;
+  border-radius: 10px;
+  height: 80px;
+  width: 80px;
+  margin: 2px;
+  border: 1px solid black;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.row .key .span {
+  background-color: white;
+}
+
+.row .key.Backspace {
+  -webkit-box-flex: 0.4;
+      -ms-flex-positive: 0.4;
+          flex-grow: 0.4;
+  font-size: 25px;
+  background-color: #414141;
+}
+
+.row .key.Tab {
+  -webkit-box-flex: 0.3;
+      -ms-flex-positive: 0.3;
+          flex-grow: 0.3;
+  font-size: 25px;
+  background-color: #414141;
+}
+
+.row .key.CapsLock {
+  -webkit-box-flex: 0.3;
+      -ms-flex-positive: 0.3;
+          flex-grow: 0.3;
+  font-size: 25px;
+  background-color: #414141;
+}
+
+.row .key.Enter {
+  -webkit-box-flex: 0.3;
+      -ms-flex-positive: 0.3;
+          flex-grow: 0.3;
+  font-size: 25px;
+  background-color: #414141;
+}
+
+.row .key.ShiftLeft {
+  -webkit-box-flex: 0.3;
+      -ms-flex-positive: 0.3;
+          flex-grow: 0.3;
+  font-size: 25px;
+  background-color: #414141;
+}
+
+.row .key.ShiftRight {
+  -webkit-box-flex: 0.1;
+      -ms-flex-positive: 0.1;
+          flex-grow: 0.1;
+  font-size: 25px;
+  background-color: #414141;
+}
+
+.row .key.ControlLeft {
+  -webkit-box-flex: 0.1;
+      -ms-flex-positive: 0.1;
+          flex-grow: 0.1;
+  font-size: 25px;
+  background-color: #414141;
+}
+
+.row .key.Space {
+  -webkit-box-flex: 0.7;
+      -ms-flex-positive: 0.7;
+          flex-grow: 0.7;
+  font-size: 25px;
+  background-color: #414141;
+}
+
+.row.row4 .key {
+  background-color: #414141;
+}
+
+.row.row0 .key:first-child {
+  background-color: gray;
+}
+
+.key.actual-key {
+  -webkit-transition: background-color 0.1s;
+  transition: background-color 0.1s;
+  background-color: #252525 !important;
+}
+/*# sourceMappingURL=styles.css.map */
