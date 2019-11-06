@@ -1,14 +1,28 @@
 let buttonCodes=['Backquote','Digit1','Digit2','Digit3','Digit4','Digit5','Digit6','Digit7','Digit8','Digit9','Digit0','Minus','Equal','Backspace','Tab','KeyQ','KeyW','KeyE','KeyR','KeyT','KeyY','KeyU','KeyI','KeyO','KeyP','BracketLeft','BracketRight','CapsLock','KeyA','KeyS','KeyD','KeyF','KeyG','KeyH','KeyJ','KeyK','KeyL','Semicolon','Quote','Backslash','Enter','ShiftLeft','KeyZ','KeyX','KeyC','KeyV','KeyB','KeyN','KeyM','Comma','Period','Slash','ArrowUp','ShiftRight','ControlLeft','AltLeft','Space','AltRight','ArrowLeft','ArrowDown','ArrowRight'];
-let keysCodesEnNoShift=['`','1','2','3','4','5','6','7','8','9','0','-','=','Backspace','Tab','q','w','e','r','t','y','u','i','o','p','[',']','CapsLock','a','s','d','f','g','h','j','k','l',';','\'','\/','Enter','Shift','z','x','c','v','b','n','m',',','.','/','ArrowUp','Shift','Control','Alt',' ','Alt','ArrowLeft','ArrowDown','ArrowRight'];
-let keysCodesEnOnShift=['~','!','@','#','$','%','^','&','*','(',')','_','+','Backspace','Tab','Q','W','E','R','T','Y','U','I','O','P','{','}','CapsLock','A','S','D','F','G','H','J','K','L',':','"','|','Enter','Shift','Z','X','C','V','B','N','M','<','>','?','ArrowUp','Shift','Control','Alt',' ','AltGraph','ArrowLeft','ArrowDown','ArrowRight'];
-let keysCodesRuNoShift=['ё','1','2','3','4','5','6','7','8','9','0','-','=','Backspace','Tab','й','ц','у','к','е','н','г','ш','щ','з','х','ъ','CapsLock','ф','ы','в','а','п','р','о','л','д','ж','э','\/','Enter','Shift','я','ч','с','м','и','т','ь','б','ю','.','ArrowUp','Shift','Control','Alt',' ','AltGraph','ArrowLeft','ArrowDown','ArrowRight'];
-let keysCodesRuOnShift=['Ё','!','"','№',';','%',':','?','*','(',')','_','+','Backspace','Tab','Й','Ц','У','К','Е','Н','Г','Ш','Щ','З','Х','Ъ','CapsLock','Ф','Ы','В','А','П','Р','О','Л','Д','Ж','Э','/','Enter','Shift','Я','Ч','С','М','И','Т','Ь','Б','Ю',',','ArrowUp','Shift','Control','Alt',' ','Alt','ArrowLeft','ArrowDown','ArrowRight'];
+let keysCodesEnNoShift=['`','1','2','3','4','5','6','7','8','9','0','-','=','Backspace','Tab','q','w','e','r','t','y','u','i','o','p','[',']','CapsLock','a','s','d','f','g','h','j','k','l',';','\'','\/','Enter','Shift','z','x','c','v','b','n','m',',','.','/','▲','Shift','Control','Alt',' ','Alt','◀','▼','▶'];
+let keysCodesEnOnShift=['~','!','@','#','$','%','^','&','*','(',')','_','+','Backspace','Tab','Q','W','E','R','T','Y','U','I','O','P','{','}','CapsLock','A','S','D','F','G','H','J','K','L',':','"','|','Enter','Shift','Z','X','C','V','B','N','M','<','>','?','▲','Shift','Control','Alt',' ','AltGraph','◀','▼','▶'];
+let keysCodesRuNoShift=['ё','1','2','3','4','5','6','7','8','9','0','-','=','Backspace','Tab','й','ц','у','к','е','н','г','ш','щ','з','х','ъ','CapsLock','ф','ы','в','а','п','р','о','л','д','ж','э','\/','Enter','Shift','я','ч','с','м','и','т','ь','б','ю','.','▲','Shift','Control','Alt',' ','AltGraph','◀','▼','▶'];
+let keysCodesRuOnShift=['Ё','!','"','№',';','%',':','?','*','(',')','_','+','Backspace','Tab','Й','Ц','У','К','Е','Н','Г','Ш','Щ','З','Х','Ъ','CapsLock','Ф','Ы','В','А','П','Р','О','Л','Д','Ж','Э','/','Enter','Shift','Я','Ч','С','М','И','Т','Ь','Б','Ю',',','▲','Shift','Control','Alt',' ','Alt','◀','▼','▶'];
 let serviceButtons=['Tab','Backspace','CapsLock','Enter','ShiftLeft','ArrowUp','ShiftRight','ControlLeft','AltLeft','Space','AltRight','ArrowLeft','ArrowDown','ArrowRight'];
 let diffButtons=['Backquote','BracketLeft','BracketRight','Semicolon','Quote','Comma','Period','Slash'];
 
+
+let langSwitcher;
+
+if(localStorage.getItem('langSwitcher')){
+    langSwitcher=localStorage.getItem('langSwitcher');
+    
+}else{
+    langSwitcher='EN' 
+   
+}
+
+
+
+
 let capsLock=false;
 let shiftSwitcher=false;
-let langSwitcher='RU';
+
 let actualKeysArray;
 let wraper;
 let textArea;
@@ -31,32 +45,41 @@ wraper=document.createElement('div');
 wraper.className="wraper";
 wraper.setAttribute('tabindex', '2');
 document.body.append(wraper);
-textArea=document.createElement('input');
+textArea=document.createElement('textarea');
 textArea.className="text-area"
 wraper.append(textArea);
-textArea.setAttribute('id', 'textArea')
+textArea.setAttribute('id', 'textArea');
+textArea.setAttribute('rows', '10');
+
 window.addEventListener("keydown", keydown, false);
 window.addEventListener("keyup", keyup, false);
 }
 
 function keydown(event){
-    textArea.focus(); 
+    textArea.focus();
+    
+    if(!serviceButtons.includes(event.code)){
+    event.preventDefault();
+    buttonPush(event);}
+    
    
     if(event.code=='Tab'){event.preventDefault(); textArea.value+='\t';}
     else if(event.code=='ShiftLeft'||event.code=='ShiftRight'){shiftSwitcher=true; actualArr(shiftSwitcher,langSwitcher,capsLock); keyRenaming(); keyDownBuffer.push(event.code)}
-    else if(event.code=='CapsLock'){capsLockSwitcher(); actualArr(shiftSwitcher,langSwitcher,capsLock); keyRenaming();}
+    else if(event.code=='CapsLock'){capsLockSwitcher(); actualArr(shiftSwitcher,langSwitcher,capsLock); keyRenaming();
+    return;}
     else if(event.code=='AltLeft'){keyDownBuffer.push(event.code)};
     
     if(keyDownBuffer.includes('AltLeft')&&(keyDownBuffer.includes('ShiftLeft')||keyDownBuffer.includes('ShiftRight'))){langSwitch(); actualArr(shiftSwitcher,langSwitcher,capsLock); keyRenaming();
     keyDownBuffer.length=0;}
     let keySelector='.key.'+event.code;
     curKey=document.querySelector(keySelector);
-    console.log(event.code);
-    if(curKey){console.log('here'); curKey.classList.add('actual-key'); curKeys.push(curKey)};
+   
+    if(curKey){ curKey.classList.add('actual-key'); curKeys.push(curKey)};
 }
 
 function keyup(event){
     if(event.code=='ShiftLeft'||event.code=='ShiftRight'){shiftSwitcher=false; actualArr(shiftSwitcher,langSwitcher,capsLock); keyRenaming();}
+    else if(event.code=='CapsLock'){return};
     for(let item of curKeys){item.classList.remove('actual-key');}
     curKeys.length=0;
     keyDownBuffer.length=0;
@@ -147,6 +170,7 @@ function mouseClick(event){
        if(classOfKey=='Tab'){textArea.value+='\t';}
        else if(classOfKey=='Enter'){textArea.value+='\n';}
        else if(classOfKey=='Backspace'){textArea.value=textArea.value.slice(0,textArea.value.length-1);}
+       else if(classOfKey=='Space'){textArea.value+=' '}
 
     }
     
@@ -156,17 +180,26 @@ function mouseClick(event){
 
 function langSwitch(){
     if(langSwitcher=='RU'){
-        langSwitcher='EN';
+        langSwitcher='EN'
+        localStorage.setItem('langSwitcher', 'EN');
+        
     }else{
-        langSwitcher='RU';
+        langSwitcher='RU'
+        localStorage.setItem('langSwitcher', 'RU');
+        
     }
 }
 
 function capsLockSwitcher(){
+	let caps;
     if(capsLock==false){
         capsLock=true;
+        caps=document.querySelector('.key.CapsLock');
+        caps.classList.add('actual-key');
     }else{
         capsLock=false;
+       	caps=document.querySelector('.key.CapsLock.actual-key');
+        caps.classList.remove('actual-key');
     }
 }
 
@@ -209,6 +242,29 @@ function keyRenaming(){
     let keys=document.querySelectorAll('span')
     
     for(let i=0;i<keys.length;i++){
-        keys[i].innerHTML=actualKeysArray[i];
+    if(i==54){keys[i].innerHTML='Ctrl';}
+    else if(i==55){keys[i].innerHTML='Alt';}
+    else if(i==56){keys[i].innerHTML=langSwitcher;}
+    else if(i==57){keys[i].innerHTML='Alt'}
+    else{keys[i].innerHTML=actualKeysArray[i];}
     }
 }
+
+function buttonPush(event){
+    let key=document.querySelector('.key.'+event.code);
+    let classOfKey='';
+    classOfKey=key.getAttribute('class').slice(4);
+    
+    if(!serviceButtons.includes(classOfKey)){
+    textArea.value=textArea.value+actualKeysArray[buttonCodes.indexOf(classOfKey)];}
+    
+    else{
+       
+       textArea.focus(); 
+       if(classOfKey=='Tab'){textArea.value+='\t';}
+       else if(classOfKey=='Enter'){textArea.value+='\n';}
+       else if(classOfKey=='Backspace'){textArea.value=textArea.value.slice(0,textArea.value.length-1);}
+
+    }
+    
+   };
