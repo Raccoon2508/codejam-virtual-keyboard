@@ -1,9 +1,9 @@
-1)task - codejam-virtual-keyboard - https://github.com/rolling-scopes-school/tasks/blob/master/tasks/codejam-virtual-keyboard.md
-2)task screenshot - https://imgur.com/R4JDrHd
-3)task on gh-pages: https://raccoon2508.github.io/codejam-virtual-keyboard/
-4)Dedline/PR-date: 06.11.2019/06.11.2019
-5)Total (100(85)/110)
-минимальный набор:
+1)task - codejam-virtual-keyboard - https://github.com/rolling-scopes-school/tasks/blob/master/tasks/codejam-virtual-keyboard.md  
+2)task screenshot - https://imgur.com/R4JDrHd  
+3)task on gh-pages: https://raccoon2508.github.io/codejam-virtual-keyboard/  
+4)Dedline/PR-date: 06.11.2019/06.11.2019  
+5)Total (100(85)/110)  
+минимальный набор:  
   +реализована генерация DOM-элементов и index.html пустой изначально: +20
   нажатие на кнопку на физической клавиатуре подсвечивает кнопку на виртуальной: +10
   стандартный набор:
